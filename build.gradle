@@ -1,0 +1,84 @@
+import org.gradle.plugins.ide.eclipse.model.Facet
+import org.gradle.plugins.ide.eclipse.model.SourceFolder
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'jetty'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+webAppDirName = 'WebRoot'
+
+httpPort = 8080
+stopPort = 9451
+stopKey = 'fireply'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.13'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile 'javax.servlet:servlet-api:2.5'
+    runtime 'javax.servlet:jstl:1.2'
+    
+    compile 'org.apache.struts:struts2-core:2.3.28.1'
+    compile 'org.apache.struts:struts2-spring-plugin:2.3.28.1'
+    compile 'org.springframework:spring-context:4.2.6.RELEASE'
+    compile 'org.springframework:spring-web:4.2.6.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.2.6.RELEASE'
+    compile 'org.springframework:spring-jdbc:4.2.6.RELEASE'
+    compile 'org.springframework:spring-orm:4.2.6.RELEASE'
+    compile 'org.springframework:spring-tx:4.2.6.RELEASE'
+    compile 'org.springframework:spring-test:4.2.6.RELEASE'
+    compile 'org.hibernate:hibernate-core:4.3.11.Final'
+    
+    compile 'mysql:mysql-connector-java:5.1.38'
+    
+    testCompile 'junit:junit:4.12'
+}
+
+eclipse {
+    // do NOT work, puzzling me
+    classpath {
+        defaultOutputDir = file('bin')
+        
+        file {
+            beforeMerged { classpath ->
+                classpath.entries.clear()
+            }
+            whenMerged {  cp ->
+                cp.entries.findAll { it instanceof SourceFolder && it.path.startsWith("src/main/") }*.output = "bin/main"
+                cp.entries.findAll { it instanceof SourceFolder && it.path.startsWith("src/test/") }*.output = "bin/test"
+                cp.entries.removeAll { it.kind == "output" }
+            }
+            
+            /*withXml { n ->
+                def cpEntry = n.asNode().classpathentry
+                cpEntry.findAll { it.@path.startsWith('src/main') }.each { it.@output = 'bin/main' }
+                cpEntry.findAll { it.@path.startsWith('src/test') }.each { it.@output = 'bin/test' }
+            }*/
+        }
+    }
+    
+    wtp {
+        facet {
+            facet name: 'java', type: Facet.FacetType.fixed
+            facet name: 'jst.web', type: Facet.FacetType.fixed
+            facet name: 'wst.jsdt.web', type: Facet.FacetType.fixed
+            facet name: 'java', version: '1.7'
+            facet name: 'jst.web', version: '3.0'
+            facet name: 'wst.jsdt.web', version: '1.0'
+            
+            file.withXml { provider ->
+                provider.asNode().fixed.find { it.@facet == 'jst.java' }.@facet = 'jst2.java'
+            }
+        }
+    }
+}
