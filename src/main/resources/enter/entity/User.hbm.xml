@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-16 23:27:45 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="org.fireply.entity.User" table="user" catalog="enter" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="account" class="org.fireply.entity.Account" fetch="select">
+            <column name="account_id" length="20" />
+        </many-to-one>
+        <many-to-one name="qrcode" class="org.fireply.entity.Qrcode" fetch="select">
+            <column name="qrcode_id" length="20" />
+        </many-to-one>
+        <property name="password" type="string">
+            <column name="password" length="32" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="18" />
+        </property>
+        <property name="sex" type="java.lang.Boolean">
+            <column name="sex" />
+        </property>
+        <property name="nativePlace" type="string">
+            <column name="native_place" length="20" />
+        </property>
+        <property name="birthday" type="string">
+            <column name="birthday" length="10" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="16" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="32" />
+        </property>
+        <property name="userDesc" type="string">
+            <column name="user_desc" length="40" />
+        </property>
+        <property name="headThumb" type="string">
+            <column name="head_thumb" length="20" />
+        </property>
+        <set name="newses" table="news" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="20" />
+            </key>
+            <one-to-many class="org.fireply.entity.News" />
+        </set>
+        <set name="proxies" table="proxy" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="20" not-null="true" />
+            </key>
+            <one-to-many class="org.fireply.entity.Proxy" />
+        </set>
+        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="20" />
+            </key>
+            <one-to-many class="org.fireply.entity.Order" />
+        </set>
+        <set name="commits" table="commit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="20" />
+            </key>
+            <one-to-many class="org.fireply.entity.Commit" />
+        </set>
+    </class>
+</hibernate-mapping>
