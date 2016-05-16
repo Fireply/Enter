@@ -41,6 +41,8 @@ dependencies {
     
     compile 'mysql:mysql-connector-java:5.1.38'
     
+    compile 'org.apache.logging.log4j:log4j-core:2.5'
+    
     testCompile 'junit:junit:4.12'
 }
 
