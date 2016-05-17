@@ -1,4 +1,4 @@
-package org.fireply.entity;
+package org.fireply.enter.entity;
 // Generated 2016-5-16 23:27:45 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
