@@ -25,7 +25,7 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd
             <value>com.mysql.jdbc.Driver</value>
         </property>
         <property name="url">
-            <value>jdbc:mysql://localhost/enter</value>
+            <value>jdbc:mysql://localhost:3306/enter</value>
         </property>
         <property name="username">
             <value>root</value>
@@ -38,7 +38,7 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd
     <!-- 配置Hibernate Session 工厂 -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="mappingLocations" value="classpath:**/*.hbm.xml"></property>
+        <property name="mappingLocations" value="classpath:enter/entity/*.hbm.xml"></property>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
@@ -46,7 +46,7 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd
                 <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
                 <prop key="hibernate.use_sql_comments">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-                <prop key="hibernate.default_schema">enter</prop>
+                <!-- <prop key="hibernate.default_schema">enter</prop> -->
                 <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
             </props>
         </property>
