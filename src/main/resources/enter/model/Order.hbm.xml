@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-22 15:15:45 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="org.fireply.enter.model.Order" table="order" catalog="enter" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="production" class="org.fireply.enter.model.Production" fetch="select">
+            <column name="production_id" length="20" />
+        </many-to-one>
+        <many-to-one name="proxy" class="org.fireply.enter.model.Proxy" fetch="select">
+            <column name="proxy_id" length="20" />
+        </many-to-one>
+        <many-to-one name="user" class="org.fireply.enter.model.User" fetch="select">
+            <column name="user_id" length="20" />
+        </many-to-one>
+        <property name="price" type="string">
+            <column name="price" length="9" not-null="true" />
+        </property>
+        <property name="createTime" type="timestamp">
+            <column name="create_time" length="19" not-null="true" />
+        </property>
+        <property name="qrcodeId" type="string">
+            <column name="qrcode_id" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-22 15:15:45 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="org.fireply.enter.model.Login" table="login" catalog="enter" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="user" class="org.fireply.enter.model.User" fetch="select">
+            <column name="user_id" length="20" not-null="true" />
+        </many-to-one>
+        <property name="ip" type="int">
+            <column name="ip" not-null="true" />
+        </property>
+        <property name="lastTime" type="timestamp">
+            <column name="last_time" length="19" not-null="true" />
+        </property>
+        <property name="passwordSuccess" type="java.lang.Short">
+            <column name="password_success" />
+        </property>
+        <property name="passwordFailure" type="java.lang.Short">
+            <column name="password_failure" />
+        </property>
+        <property name="cookieSuccess" type="java.lang.Short">
+            <column name="cookie_success" />
+        </property>
+        <property name="sequenceFailure" type="java.lang.Short">
+            <column name="sequence_failure" />
+        </property>
+        <property name="multiDeviceFactor" type="java.lang.Short">
+            <column name="multi_device_factor" />
+        </property>
+        <property name="ipFactor" type="java.lang.Short">
+            <column name="ip_factor" />
+        </property>
+    </class>
+</hibernate-mapping>

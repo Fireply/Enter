@@ -5,10 +5,37 @@
     <constant name="struts.objectFactory" value="spring"/>
     <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
     <constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true" />
+    <!-- <constant name="struts.devMode" value="true" /> -->
     
     <package name="default" namespace="/" extends="struts-default">
+        <!-- <interceptors>
+            <interceptor name="sessionInterceptor" class="org.fireply.enter.interceptor.SessionInterceptor" />
+            <interceptor-stack name="sessionStack">
+                <interceptor-ref name="defaultStack" />
+                <interceptor-ref name="sessionInterceptor" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="sessionStack" /> -->
+    
         <global-results>
+            <result name="login">/signin.jsp</result>
             <result name="error">error/error.jsp</result>
         </global-results>
+        
+        <action name="" class="loginAction">
+            <result name="to_index">/index.jsp</result>
+        </action>
+        
+        <action name="login" class="loginAction">
+            <result name="profile_user">profile/user.jsp</result>
+            <result name="profile_admin">profile/admin.jsp</result>
+            <result name="login_failure">error/error.jsp</result>
+        </action>
+        
+        <action name="cookieLogin" class="cookieLoginAction">
+            <result name="success">profile/user.jsp</result>
+        </action>
+        
     </package>
 </struts>

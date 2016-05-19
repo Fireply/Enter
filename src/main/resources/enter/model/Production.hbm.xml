@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-22 15:15:45 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="org.fireply.enter.model.Production" table="production" catalog="enter" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="category" class="org.fireply.enter.model.Category" fetch="select">
+            <column name="category_id" length="5" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="32" not-null="true" />
+        </property>
+        <property name="price" type="string">
+            <column name="price" length="9" not-null="true" />
+        </property>
+        <property name="desc" type="string">
+            <column name="desc" length="120" />
+        </property>
+        <property name="thumb" type="string">
+            <column name="thumb" length="20" not-null="true" />
+        </property>
+        <set name="productionGalleries" table="production_gallery" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="production_id" length="20" not-null="true" />
+            </key>
+            <one-to-many class="org.fireply.enter.model.ProductionGallery" />
+        </set>
+        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="production_id" length="20" />
+            </key>
+            <one-to-many class="org.fireply.enter.model.Order" />
+        </set>
+    </class>
+</hibernate-mapping>

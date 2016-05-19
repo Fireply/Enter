@@ -1,10 +1,22 @@
 import org.gradle.plugins.ide.eclipse.model.Facet
 import org.gradle.plugins.ide.eclipse.model.SourceFolder
+import org.akhikhl.gretty.TomcatStartTask
+
+buildscript {
+    repositories {
+      jcenter()
+    }
+    
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
 
 apply plugin: 'java'
 apply plugin: 'war'
+apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
-apply plugin: 'jetty'
+apply plugin: 'org.akhikhl.gretty'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -12,12 +24,14 @@ compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 webAppDirName = 'WebRoot'
 
-httpPort = 8080
-stopPort = 9451
-stopKey = 'fireply'
-
 task wrapper(type: Wrapper) {
     gradleVersion = '2.13'
+}
+
+gretty {
+    servletContainer = 'tomcat8'
+    httpPort = 9080
+//    springBoot = true
 }
 
 repositories {
@@ -28,8 +42,12 @@ dependencies {
     providedCompile 'javax.servlet:servlet-api:2.5'
     runtime 'javax.servlet:jstl:1.2'
     
-    compile 'org.apache.struts:struts2-core:2.3.28.1'
-    compile 'org.apache.struts:struts2-spring-plugin:2.3.28.1'
+    compile('org.apache.struts:struts2-core:2.3.28.1') {
+        exclude module:'javassist'
+    }
+    compile('org.apache.struts:struts2-spring-plugin:2.3.28.1') {
+        exclude module:'javassist'
+    }
     compile 'org.springframework:spring-context:4.2.6.RELEASE'
     compile 'org.springframework:spring-web:4.2.6.RELEASE'
     compile 'org.springframework:spring-webmvc:4.2.6.RELEASE'

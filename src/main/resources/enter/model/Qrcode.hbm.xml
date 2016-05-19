@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-22 15:15:45 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="org.fireply.enter.model.Qrcode" table="qrcode" catalog="enter" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="info" type="string">
+            <column name="info" length="64" not-null="true" />
+        </property>
+        <property name="imageSrc" type="string">
+            <column name="image_src" length="32" not-null="true" />
+        </property>
+        <set name="users" table="user" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="qrcode_id" length="20" />
+            </key>
+            <one-to-many class="org.fireply.enter.model.User" />
+        </set>
+        <set name="proxies" table="proxy" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="qrcode_id" length="20" />
+            </key>
+            <one-to-many class="org.fireply.enter.model.Proxy" />
+        </set>
+    </class>
+</hibernate-mapping>

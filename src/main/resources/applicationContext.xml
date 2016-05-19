@@ -38,7 +38,7 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd
     <!-- 配置Hibernate Session 工厂 -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="mappingLocations" value="classpath:enter/entity/*.hbm.xml"></property>
+        <property name="mappingLocations" value="classpath:enter/model/*.hbm.xml"></property>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
