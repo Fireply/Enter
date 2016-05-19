@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-5-16 23:27:45 by Hibernate Tools 4.3.1.Final -->
+<!-- Generated 2016-5-19 7:55:16 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
-    <class name="org.fireply.entity.News" table="news" catalog="enter" optimistic-lock="version">
+    <class name="org.fireply.enter.entity.News" table="news" catalog="enter" optimistic-lock="version">
         <id name="id" type="string">
             <column name="id" length="20" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="user" class="org.fireply.entity.User" fetch="select">
+        <many-to-one name="user" class="org.fireply.enter.entity.User" fetch="select">
             <column name="user_id" length="20" />
         </many-to-one>
         <property name="title" type="string">
@@ -24,7 +24,7 @@
             <key>
                 <column name="news_id" length="20" not-null="true" />
             </key>
-            <one-to-many class="org.fireply.entity.Commit" />
+            <one-to-many class="org.fireply.enter.entity.Commit" />
         </set>
     </class>
 </hibernate-mapping>

@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-5-16 23:27:45 by Hibernate Tools 4.3.1.Final -->
+<!-- Generated 2016-5-19 7:55:16 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
-    <class name="org.fireply.entity.User" table="user" catalog="enter" optimistic-lock="version">
+    <class name="org.fireply.enter.entity.User" table="user" catalog="enter" optimistic-lock="version">
         <id name="id" type="string">
             <column name="id" length="20" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="account" class="org.fireply.entity.Account" fetch="select">
+        <many-to-one name="account" class="org.fireply.enter.entity.Account" fetch="select">
             <column name="account_id" length="20" />
         </many-to-one>
-        <many-to-one name="qrcode" class="org.fireply.entity.Qrcode" fetch="select">
+        <many-to-one name="qrcode" class="org.fireply.enter.entity.Qrcode" fetch="select">
             <column name="qrcode_id" length="20" />
         </many-to-one>
         <property name="password" type="string">
@@ -45,25 +45,25 @@
             <key>
                 <column name="user_id" length="20" />
             </key>
-            <one-to-many class="org.fireply.entity.News" />
+            <one-to-many class="org.fireply.enter.entity.News" />
         </set>
         <set name="proxies" table="proxy" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="user_id" length="20" not-null="true" />
             </key>
-            <one-to-many class="org.fireply.entity.Proxy" />
+            <one-to-many class="org.fireply.enter.entity.Proxy" />
         </set>
         <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="user_id" length="20" />
             </key>
-            <one-to-many class="org.fireply.entity.Order" />
+            <one-to-many class="org.fireply.enter.entity.Order" />
         </set>
         <set name="commits" table="commit" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="user_id" length="20" />
             </key>
-            <one-to-many class="org.fireply.entity.Commit" />
+            <one-to-many class="org.fireply.enter.entity.Commit" />
         </set>
     </class>
 </hibernate-mapping>

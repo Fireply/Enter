@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-5-16 23:27:45 by Hibernate Tools 4.3.1.Final -->
+<!-- Generated 2016-5-19 7:55:16 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
-    <class name="org.fireply.entity.Account" table="account" catalog="enter" optimistic-lock="version">
+    <class name="org.fireply.enter.entity.Account" table="account" catalog="enter" optimistic-lock="version">
         <id name="id" type="string">
             <column name="id" length="20" />
             <generator class="assigned" />
@@ -18,7 +18,7 @@
             <key>
                 <column name="account_id" length="20" />
             </key>
-            <one-to-many class="org.fireply.entity.User" />
+            <one-to-many class="org.fireply.enter.entity.User" />
         </set>
     </class>
 </hibernate-mapping>
