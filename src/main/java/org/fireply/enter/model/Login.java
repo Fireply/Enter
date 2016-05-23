@@ -1,5 +1,5 @@
 package org.fireply.enter.model;
-// Generated 2016-5-22 15:15:44 by Hibernate Tools 4.3.1.Final
+// Generated 2016-5-23 16:15:06 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Login implements java.io.Serializable {
 
-    private String id;
+    private Integer id;
     private User user;
     private int ip;
     private Date lastTime;
@@ -22,16 +22,14 @@ public class Login implements java.io.Serializable {
     public Login() {
     }
 
-    public Login(String id, User user, int ip, Date lastTime) {
-        this.id = id;
+    public Login(User user, int ip, Date lastTime) {
         this.user = user;
         this.ip = ip;
         this.lastTime = lastTime;
     }
 
-    public Login(String id, User user, int ip, Date lastTime, Short passwordSuccess, Short passwordFailure,
-            Short cookieSuccess, Short sequenceFailure, Short multiDeviceFactor, Short ipFactor) {
-        this.id = id;
+    public Login(User user, int ip, Date lastTime, Short passwordSuccess, Short passwordFailure, Short cookieSuccess,
+            Short sequenceFailure, Short multiDeviceFactor, Short ipFactor) {
         this.user = user;
         this.ip = ip;
         this.lastTime = lastTime;
@@ -43,11 +41,11 @@ public class Login implements java.io.Serializable {
         this.ipFactor = ipFactor;
     }
 
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

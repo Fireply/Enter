@@ -1,5 +1,5 @@
 package org.fireply.enter.model;
-// Generated 2016-5-22 15:15:44 by Hibernate Tools 4.3.1.Final
+// Generated 2016-5-23 16:15:06 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Commit implements java.io.Serializable {
 
-    private String id;
+    private Integer id;
     private News news;
     private User user;
     private String content;
@@ -17,26 +17,24 @@ public class Commit implements java.io.Serializable {
     public Commit() {
     }
 
-    public Commit(String id, News news, String content, Date createTime) {
-        this.id = id;
+    public Commit(News news, String content, Date createTime) {
         this.news = news;
         this.content = content;
         this.createTime = createTime;
     }
 
-    public Commit(String id, News news, User user, String content, Date createTime) {
-        this.id = id;
+    public Commit(News news, User user, String content, Date createTime) {
         this.news = news;
         this.user = user;
         this.content = content;
         this.createTime = createTime;
     }
 
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

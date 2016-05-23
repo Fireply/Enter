@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html lang="cn">
     <head>
@@ -18,6 +19,9 @@
     </head>
     <body>
         用户主页
+        userId: <s:property value="#session.userId" />
+        sequence: <s:property value="#session.sequence" />
+        token: <s:property value="#session.token"/>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="js/ie10-viewport-bug-workaround.js"></script>
         

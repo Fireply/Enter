@@ -1,5 +1,5 @@
 package org.fireply.enter.model;
-// Generated 2016-5-22 15:15:44 by Hibernate Tools 4.3.1.Final
+// Generated 2016-5-23 16:15:06 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public class Production implements java.io.Serializable {
 
-    private String id;
+    private Integer id;
     private Category category;
     private String name;
     private String price;
@@ -21,16 +21,14 @@ public class Production implements java.io.Serializable {
     public Production() {
     }
 
-    public Production(String id, String name, String price, String thumb) {
-        this.id = id;
+    public Production(String name, String price, String thumb) {
         this.name = name;
         this.price = price;
         this.thumb = thumb;
     }
 
-    public Production(String id, Category category, String name, String price, String desc, String thumb,
+    public Production(Category category, String name, String price, String desc, String thumb,
             Set<ProductionGallery> productionGalleries, Set<Order> orders) {
-        this.id = id;
         this.category = category;
         this.name = name;
         this.price = price;
@@ -40,11 +38,11 @@ public class Production implements java.io.Serializable {
         this.orders = orders;
     }
 
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

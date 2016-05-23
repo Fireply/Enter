@@ -3,6 +3,7 @@ package org.fireply.enter.action;
 import static org.fireply.enter.constant.ResultConstants.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.fireply.enter.model.Authorization;
+import org.fireply.enter.model.User;
 import org.fireply.enter.security.Md5;
 import org.fireply.enter.security.Sign;
 import org.fireply.enter.service.LoginService;
@@ -47,7 +50,48 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
         if (userId != null && userPassword != null) {
             String signedPassword = Md5.sign(userPassword);
             success = loginService.loginByPassword(userId, signedPassword, remoteAddr);
-        } else if (cookies != null) {    // 使用 Cookie 登录
+            if (success) {
+                // 数据库是否有 sequence, token 记录，如果有更新 session, 否则生成后存入 session
+                List<Authorization> authorizations = loginService.onceLogined(userId);
+                if (authorizations == null) {
+                    List<String> unEncrypted = new ArrayList<>();
+                    unEncrypted.add(userId);
+                    unEncrypted.add(userPassword);
+
+                    String sequence = Sign.encrypt(unEncrypted);
+                    String token = Sign.encrypt(unEncrypted);
+                    
+                    User user = (User) loginService.get(User.class, userId);
+                    Authorization authorization = new Authorization();
+                    authorization.setUser(user);
+                    authorization.setSequence(sequence);
+                    authorization.setToken(token);
+                    authorization.setLastTime(new Date());
+                    
+                    loginService.persist(authorization);
+                    
+                    session.put("userId", userId);
+                    session.put("sequence", sequence);
+                    session.put("token", token);
+                } else {
+                    String value;
+                    for (Authorization auth : authorizations) {
+                        value = auth.getUser().getId();
+                        if (value != null && value.length() > 0) {
+                            session.put("userId", value);
+                        }
+                        value = auth.getSequence();
+                        if (value != null && value.length() > 0) {
+                            session.put("sequence", value);
+                        }
+                        value = auth.getToken();
+                        if (value != null && value.length() > 0) {
+                            session.put("token", value);
+                        }
+                    }
+                } 
+            }
+        } else if (cookies != null) {
             String cookieUserId = null;
             String cookieSequence = null;
             String cookieToken = null;
@@ -68,7 +112,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
                 }
             }
             
-            if (found) {
+            if (found) {    // 使用 Cookie 登陆
                 success = loginService.loginByCookie(cookieUserId, cookieSequence, cookieToken, remoteAddr);
             } else {
                 return LOGIN;

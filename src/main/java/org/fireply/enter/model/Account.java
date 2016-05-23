@@ -1,5 +1,5 @@
 package org.fireply.enter.model;
-// Generated 2016-5-22 15:15:44 by Hibernate Tools 4.3.1.Final
+// Generated 2016-5-23 16:15:06 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public class Account implements java.io.Serializable {
 
-    private String id;
+    private Integer id;
     private String wexinId;
     private String alipayId;
     private Set<User> users = new HashSet<User>(0);
@@ -17,22 +17,17 @@ public class Account implements java.io.Serializable {
     public Account() {
     }
 
-    public Account(String id) {
-        this.id = id;
-    }
-
-    public Account(String id, String wexinId, String alipayId, Set<User> users) {
-        this.id = id;
+    public Account(String wexinId, String alipayId, Set<User> users) {
         this.wexinId = wexinId;
         this.alipayId = alipayId;
         this.users = users;
     }
 
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

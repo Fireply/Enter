@@ -1,5 +1,5 @@
 package org.fireply.enter.model;
-// Generated 2016-5-22 15:15:44 by Hibernate Tools 4.3.1.Final
+// Generated 2016-5-23 16:15:06 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;

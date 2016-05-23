@@ -1,5 +1,5 @@
 package org.fireply.enter.model;
-// Generated 2016-5-22 15:15:44 by Hibernate Tools 4.3.1.Final
+// Generated 2016-5-23 16:15:06 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Authorization implements java.io.Serializable {
 
-    private String id;
+    private Integer id;
     private User user;
     private String sequence;
     private String token;
@@ -17,19 +17,18 @@ public class Authorization implements java.io.Serializable {
     public Authorization() {
     }
 
-    public Authorization(String id, User user, String sequence, String token, Date lastTime) {
-        this.id = id;
+    public Authorization(User user, String sequence, String token, Date lastTime) {
         this.user = user;
         this.sequence = sequence;
         this.token = token;
         this.lastTime = lastTime;
     }
 
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-5-22 15:15:45 by Hibernate Tools 4.3.1.Final -->
+<!-- Generated 2016-5-23 16:15:06 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
     <class name="org.fireply.enter.model.Production" table="production" catalog="enter" optimistic-lock="version">
-        <id name="id" type="string">
-            <column name="id" length="20" />
-            <generator class="assigned" />
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
         </id>
         <many-to-one name="category" class="org.fireply.enter.model.Category" fetch="select">
             <column name="category_id" length="5" />
@@ -25,13 +25,13 @@
         </property>
         <set name="productionGalleries" table="production_gallery" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="production_id" length="20" not-null="true" />
+                <column name="production_id" not-null="true" />
             </key>
             <one-to-many class="org.fireply.enter.model.ProductionGallery" />
         </set>
         <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="production_id" length="20" />
+                <column name="production_id" />
             </key>
             <one-to-many class="org.fireply.enter.model.Order" />
         </set>

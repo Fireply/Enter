@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.fireply.enter.dao.Dao;
+import org.fireply.enter.util.ClumnNameUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -50,18 +51,18 @@ public class DaoImpl implements Dao {
 
     @Override
     public List get(Class<?> clazz, String fieldName, Object fieldValue) {
-        String hql = "from" + clazz.getSimpleName() + "where" + fieldName + "'" + fieldValue + "'";
+        String hql = "from " + clazz.getSimpleName() + " where " + ClumnNameUtil.getClumnName(fieldName) + "='" + fieldValue + "'";
         return executeQuery(hql);
     }
 
     @Override
-    public List get(Class<?> clazz, Map<String, Object> fieldsMap) {
+    public List get(String modelName, String fieldName, Object fieldValue) {
         // TODO Auto-generated method stub
         return null;
     }
-
+    
     @Override
-    public List get(String modelName, String fieldName, Object fieldValue) {
+    public List get(Class<?> clazz, Map<String, Object> fieldsMap) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -90,7 +91,8 @@ public class DaoImpl implements Dao {
             query.setFirstResult(firstResult);
             query.setMaxResults(maxResults);
         }
-        return query.list();
+        List list = query.list();
+        return list;
     }
 
     @Override

@@ -1,5 +1,5 @@
 package org.fireply.enter.model;
-// Generated 2016-5-22 15:15:44 by Hibernate Tools 4.3.1.Final
+// Generated 2016-5-23 16:15:06 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Order implements java.io.Serializable {
 
-    private String id;
+    private Integer id;
     private Production production;
     private Proxy proxy;
     private User user;
@@ -19,15 +19,12 @@ public class Order implements java.io.Serializable {
     public Order() {
     }
 
-    public Order(String id, String price, Date createTime) {
-        this.id = id;
+    public Order(String price, Date createTime) {
         this.price = price;
         this.createTime = createTime;
     }
 
-    public Order(String id, Production production, Proxy proxy, User user, String price, Date createTime,
-            String qrcodeId) {
-        this.id = id;
+    public Order(Production production, Proxy proxy, User user, String price, Date createTime, String qrcodeId) {
         this.production = production;
         this.proxy = proxy;
         this.user = user;
@@ -36,11 +33,11 @@ public class Order implements java.io.Serializable {
         this.qrcodeId = qrcodeId;
     }
 
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

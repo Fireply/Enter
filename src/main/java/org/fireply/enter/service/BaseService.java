@@ -2,6 +2,8 @@ package org.fireply.enter.service;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Service;
+
 public interface BaseService {
 
     void persist(Object object);

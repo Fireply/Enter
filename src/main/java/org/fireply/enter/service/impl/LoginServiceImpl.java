@@ -1,6 +1,9 @@
 package org.fireply.enter.service.impl;
 
+import java.util.List;
+
 import org.fireply.enter.dao.Dao;
+import org.fireply.enter.model.Authorization;
 import org.fireply.enter.model.User;
 import org.fireply.enter.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +46,16 @@ public class LoginServiceImpl extends BaseServiceImpl implements LoginService {
     @Override
     public boolean allowsLogin(String userId, String remoteAddr) {
         return true;
+    }
+
+    @Override
+    public List<Authorization> onceLogined(String userId) {
+        List<Authorization> list = (List<Authorization>) dao.get(Authorization.class, "userId", userId);
+        if (list != null && !list.isEmpty()) {
+            return  list;
+        } else {
+            return null;
+        }
     }
 
 }
