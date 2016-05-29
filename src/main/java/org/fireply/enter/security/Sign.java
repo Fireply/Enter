@@ -2,32 +2,41 @@ package org.fireply.enter.security;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
 public class Sign {
 
-    public static String encrypt(List<String> unEncrypted) {
-        String encrypted = null;
+    public static String sign(List<String> unSigned) {
+        String signed = null;
 
-        if (unEncrypted == null) {
-            unEncrypted = new ArrayList<>();
+        if (unSigned == null) {
+            unSigned = new ArrayList<>();
         }
         
         String currentTime = Long.toString(System.currentTimeMillis());
-        unEncrypted.add(currentTime);
-        unEncrypted.add(getRandomStr());
+        unSigned.add(currentTime);
+        unSigned.add(getRandomStr());
 
-        Object[] unEncryptedArray = unEncrypted.toArray();
-        Arrays.sort(unEncryptedArray);
+        int r = 0, w = 0;
+        for (; r < unSigned.size(); r++) {
+            if (unSigned.get(r) != null) {
+                unSigned.set(w++, unSigned.get(r));
+            }
+        }
+        unSigned = unSigned.subList(0, w);
+        
+        Object[] unSignedArray = unSigned.toArray();
+        Arrays.sort(unSignedArray);
 
         try {
-            encrypted = Md5.sign(unEncryptedArray.toString());
+            signed = Md5.md5(unSignedArray.toString());
         } catch (AesException e) {
             e.printStackTrace();
         }
 
-        return encrypted;
+        return signed;
     }
 
     public static String getRandomStr() {

@@ -19,9 +19,11 @@
 
   <body>
   
+    <jsp:include page="navbar.jsp" />
+  
     <div class="container">
 
-      <form class="form-signin" action="login">
+      <form class="form-signin center-vertical" action="login" method="post">
         <h2 class="form-signin-heading">登陆</h2>
         <label for="userId" class="sr-only">用户 ID</label>
         <input type="text" id="userId" name="userId" class="form-control" placeholder="用户 ID" required autofocus />
@@ -32,10 +34,17 @@
             <input type="checkbox" value="remember-me" /> 记住我
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
       </form>
 
     </div> <!-- /container -->
+
+    <style type="text/css">
+    .vertical {
+      position: relative;
+      transform: translateX(40%);
+    }
+    </style>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>

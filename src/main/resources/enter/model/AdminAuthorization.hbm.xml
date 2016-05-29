@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-26 6:45:30 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="org.fireply.enter.model.AdminAuthorization" table="admin_authorization" catalog="enter" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="admin" class="org.fireply.enter.model.Admin" fetch="select">
+            <column name="admin_id" length="20" not-null="true" />
+        </many-to-one>
+        <property name="sequence" type="string">
+            <column name="sequence" length="40" not-null="true" />
+        </property>
+        <property name="token" type="string">
+            <column name="token" length="40" not-null="true" />
+        </property>
+        <property name="lastTime" type="timestamp">
+            <column name="last_time" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

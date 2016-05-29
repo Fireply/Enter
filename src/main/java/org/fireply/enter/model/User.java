@@ -1,5 +1,5 @@
 package org.fireply.enter.model;
-// Generated 2016-5-23 16:15:06 by Hibernate Tools 4.3.1.Final
+// Generated 2016-5-26 6:45:30 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,7 +27,7 @@ public class User implements java.io.Serializable {
     private Set<Order> orders = new HashSet<Order>(0);
     private Set<Commit> commits = new HashSet<Commit>(0);
     private Set<Admin> admins = new HashSet<Admin>(0);
-    private Set<Authorization> authorizations = new HashSet<Authorization>(0);
+    private Set<UserAuthorization> userAuthorizations = new HashSet<UserAuthorization>(0);
 
     public User() {
     }
@@ -39,7 +39,7 @@ public class User implements java.io.Serializable {
     public User(String id, Account account, Qrcode qrcode, String password, String name, Boolean sex,
             String nativePlace, String birthday, String mobile, String email, String userDesc, String headThumb,
             Set<Login> logins, Set<News> newses, Set<Proxy> proxies, Set<Order> orders, Set<Commit> commits,
-            Set<Admin> admins, Set<Authorization> authorizations) {
+            Set<Admin> admins, Set<UserAuthorization> userAuthorizations) {
         this.id = id;
         this.account = account;
         this.qrcode = qrcode;
@@ -58,7 +58,7 @@ public class User implements java.io.Serializable {
         this.orders = orders;
         this.commits = commits;
         this.admins = admins;
-        this.authorizations = authorizations;
+        this.userAuthorizations = userAuthorizations;
     }
 
     public String getId() {
@@ -205,12 +205,12 @@ public class User implements java.io.Serializable {
         this.admins = admins;
     }
 
-    public Set<Authorization> getAuthorizations() {
-        return this.authorizations;
+    public Set<UserAuthorization> getUserAuthorizations() {
+        return this.userAuthorizations;
     }
 
-    public void setAuthorizations(Set<Authorization> authorizations) {
-        this.authorizations = authorizations;
+    public void setUserAuthorizations(Set<UserAuthorization> userAuthorizations) {
+        this.userAuthorizations = userAuthorizations;
     }
 
 }

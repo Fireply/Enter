@@ -18,10 +18,12 @@
         <![endif]-->
     </head>
     <body>
-        用户主页
-        userId: <s:property value="#session.userId" />
-        sequence: <s:property value="#session.sequence" />
-        token: <s:property value="#session.token"/>
+        用户主页<br>
+        userId: <s:property value="#session.userId" /><br>
+        adminId: <s:property value="#session.adminId" /><br>
+        sequence: <s:property value="#session.sequence" /><br>
+        token: <s:property value="#session.token" /><br>
+        #context['struts.actionMapping'].name: <s:property value="#context['struts.actionMapping'].name"/>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="js/ie10-viewport-bug-workaround.js"></script>
         

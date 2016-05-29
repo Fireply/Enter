@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-5-23 16:15:06 by Hibernate Tools 4.3.1.Final -->
+<!-- Generated 2016-5-26 6:45:30 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
     <class name="org.fireply.enter.model.User" table="user" catalog="enter" optimistic-lock="version">
         <id name="id" type="string">
@@ -77,11 +77,11 @@
             </key>
             <one-to-many class="org.fireply.enter.model.Admin" />
         </set>
-        <set name="authorizations" table="authorization" inverse="true" lazy="true" fetch="select">
+        <set name="userAuthorizations" table="user_authorization" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="user_id" length="20" not-null="true" />
             </key>
-            <one-to-many class="org.fireply.enter.model.Authorization" />
+            <one-to-many class="org.fireply.enter.model.UserAuthorization" />
         </set>
     </class>
 </hibernate-mapping>
