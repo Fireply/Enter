@@ -31,7 +31,8 @@ task wrapper(type: Wrapper) {
 gretty {
     servletContainer = 'tomcat8'
     httpPort = 9080
-    scanInterval = 0
+    scanInterval = 30
+    managedClassReload = true
 }
 
 repositories {

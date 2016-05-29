@@ -26,6 +26,8 @@ import org.fireply.enter.model.UserAuthorization;
 import org.fireply.enter.security.Md5;
 import org.fireply.enter.security.Sign;
 import org.fireply.enter.service.LoginService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -46,6 +48,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
     // 登录页面填写的 userId, 不止是和 数据库里 user 表的 id 挂钩，还和 admin 表的 id 挂钩
     private String userId;
     private String userPassword; // 登录页面填写的 userPassword
+    
+    private static final Logger logger = LoggerFactory.getLogger(LoginAction.class);
 
     @Override
     public String execute() throws Exception {
@@ -61,6 +65,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
         String cookieToken = null;
 
         if (userId != null && userPassword != null) {
+            logger.debug("用户/管理员 {} 使用密码登录", userId);
             String signedPassword = Md5.md5(userPassword);
             loginResult = loginService.loginByPassword(userId, signedPassword, remoteAddr);
         } else if (cookies != null) {
@@ -86,9 +91,11 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
 
             if (found) { // 使用 Cookie 登陆
                 if (cookieAdminId != null && cookieAdminId.length() > 0) {
+                    logger.debug("管理员 {} 使用 Cookie 登录", cookieAdminId);
                     loginResult = loginService.loginByCookie(cookieAdminId, cookieSequence, cookieToken,
                             remoteAddr);
                 } else {
+                    logger.debug("用户 {} 使用 Cookie 登录", cookieUserId);
                     loginResult = loginService.loginByCookie(cookieUserId, cookieSequence, cookieToken,
                             remoteAddr);
                 }
@@ -101,6 +108,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
 
         // 如果登录成功
         if (SUCCESS_USER.equals(loginResult)) {
+            logger.info("用户 {} 通过密码登录成功", userId);     
             updateUserAuthorization(userId);
             //TODO 
             if (actionPath != null && actionPath.length() > 0 && !"/login".equals(actionPath)) {
@@ -109,6 +117,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
                 return PROFILE_USER;
             }
         } else if (SUCCESS_COOKIE_USER.equals(loginResult)) {
+            logger.info("用户 {} 通过 Cookie 登录成功", cookieUserId);
             updateUserAuthorization(cookieUserId);
             //TODO 
             if (actionPath != null && actionPath.length() > 0 && !"/login".equals(actionPath)) {
@@ -117,6 +126,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
                 return PROFILE_USER;
             }
         }else if (SUCCESS_ADMIN.equals(loginResult)) {
+            logger.info("管理员 {} 通过密码登录成功", userId);
             updateAdminAuthorization(userId);   // 前台页面 userId 与 adminId 共用一个 name="userId" 的 <input> 标签
             if (actionPath != null && actionPath.length() > 0 && !"/login".equals(actionPath)) {
                 return actionPath;//TODO 
@@ -124,6 +134,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
                 return PROFILE_ADMIN;
             }
         } else if (SUCCESS_COOKIE_ADMIN.equals(loginResult)) {
+            logger.info("管理员 {} 通过 Cookie 登录成功", cookieAdminId);
             updateAdminAuthorization(cookieAdminId);
             if (actionPath != null && actionPath.length() > 0 && !"/login".equals(actionPath)) {
                 return actionPath;//TODO 
