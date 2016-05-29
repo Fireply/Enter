@@ -1,0 +1,86 @@
+digraph login {
+	graph [fontname="Microsoft YaHei"];
+	node [fontname="Microsoft YaHei", shape=box];
+	edge [fontname="Microsoft YaHei"];
+
+	label = "登录流程图";
+
+	start [label="开始", style=rounded];
+	e0 [label="结束", style=rounded];
+	e1 [label="结束", style=rounded];
+	ifUsePassword [label="是否通过密码登录？", shape="diamond"];
+	queryDbPassword [label="查询数据库"];
+	ifAllowLogin [label="是否允许当前 IP\n登录这个 user 账号", shape=diamond];
+	isPasswordCorrect [label="密码是否正确？", shape=diamond];
+	ifDbHasRecord [label="数据库是否有\nuserId,sequence,\ntoken, IP 记录", shape=diamond];
+	createSequenceToken [label="生成 sequence 和 token"];
+	saveDb [label="存入数据库"];
+	saveCookie [label="将 userId, sequence,\ntoken 存入 Cookie"]
+	updateSession [label="更新 session"];
+	increasePasswordSuccess [label="更新数据库，对应 IP 记录的\npassword_success + 1"];
+	toProfile [label="跳转到用户主页"];
+	increasePasswordFailure [label="更新数据库，\n对应 IP 记录的\npassword_failure + 1"];
+	toLogin [label="跳转到登录页"];
+
+	start -> ifUsePassword;
+	ifUsePassword -> queryDbPassword [label="是"];
+	queryDbPassword -> ifAllowLogin;
+	ifAllowLogin -> isPasswordCorrect [label="是"];
+	isPasswordCorrect -> ifDbHasRecord [label="是"];
+	ifDbHasRecord -> createSequenceToken [label="否"];
+	createSequenceToken -> saveDb -> saveCookie;
+	ifDbHasRecord -> saveCookie [label="是"];
+	saveCookie -> updateSession;
+	updateSession -> increasePasswordSuccess -> toProfile;
+	toProfile -> e0;
+	isPasswordCorrect -> increasePasswordFailure [label="否"];
+	increasePasswordFailure -> toLogin;
+	toLogin -> e1;
+	ifAllowLogin -> toLogin [label="否"];
+
+	ifUseCookie [label="是否通过 Cookie 登录？", shape=diamond];
+	queryDbSignatrue [label="从数据库查询 sequence, token, IP"];
+	ifDbHasCookieRecord [label="数据库是否中有\nsequence, token, IP 记录", shape=diamond];
+	ifSequenceCorrect [label="sequence 是否正确？", shape=diamond];
+	increaseSequenceFailure [label="更新数据库，对应 IP 记录的\nsequence_failure + 1"];
+
+	ifUsePassword -> ifUseCookie [label="否"];
+	ifUseCookie -> queryDbSignatrue [label="是"];
+	queryDbSignatrue -> ifDbHasCookieRecord;
+	ifDbHasCookieRecord -> ifSequenceCorrect [label="是"];
+	ifSequenceCorrect -> increaseSequenceFailure [label="否"];
+	increaseSequenceFailure -> toLogin;
+
+	ifIpSame [label="IP 是否相同", shape=diamond];
+	ifTokenSame [label="Cookie 中的 token\n是否与数据库的一致？", shape=diamond];
+	increaseCookieSuccess [label="更新数据库，对应 IP 记录的\ncookie_success + 1"];
+	updateCookieToken [label="更新 Cookie 中的 token"];
+
+	ifSequenceCorrect -> ifIpSame [label="是"];
+	ifIpSame -> ifTokenSame [label="是"];
+	ifTokenSame -> increaseCookieSuccess [label="是"];
+	increaseCookieSuccess -> toProfile;
+	ifTokenSame -> updateCookieToken [label="否"];
+	updateCookieToken -> toProfile;
+
+	ifTokenSameIpDiff [label="Cookie 中的 token\n是否与数据库的一致？", shape=diamond];
+	increaseMultiDeviceFactor [label="更新数据库，对应 IP 记录的\nmulti_device_factor + 1"];
+	increaseIpFactor [label="更新数据库，对应 IP\n记录的 ip_factor + 1"];
+	updateDbIp [label="更新数据库中的 IP"];
+	noticeUser [label="发送邮件提醒用户\n更改账号密码"];
+
+	ifIpSame -> ifTokenSameIpDiff [label="否"];
+	ifTokenSameIpDiff -> increaseMultiDeviceFactor [label="否"];
+	ifTokenSameIpDiff -> increaseIpFactor [label="是"];
+	increaseMultiDeviceFactor -> updateDbIp;
+	increaseIpFactor -> updateDbIp;
+	updateDbIp -> noticeUser -> updateCookieToken
+
+	deleteSession [label="从 session 中\n移除userId,\nsequence, token"];
+	deleteCookie [label="从Cookie 中\n移除userId,\nsequence, token"];
+	ifDbHasCookieRecord -> deleteSession [label="否"];
+	deleteSession -> deleteCookie -> toLogin;
+
+	toIndex [label="跳转到网站首页"];
+	ifUseCookie -> toIndex [label="否"];
+}
