@@ -2,6 +2,11 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>Enter</display-name>
   
+  <!-- 解决 多应用发布时 Tomcat 内存溢出的问题 -->
+  <!-- <listener>
+    <listener-class>org.fireply.enter.listener.ContextFinalizer</listener-class>
+  </listener> -->
+  
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
