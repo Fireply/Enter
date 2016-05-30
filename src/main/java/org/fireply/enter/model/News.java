@@ -36,6 +36,12 @@ public class News implements java.io.Serializable {
         this.commits = commits;
     }
 
+    @Override
+    public String toString() {
+        return "News [id=" + id + ", user=" + user + ", title=" + title + ", content=" + content + ", createTime="
+                + createTime + "]";
+    }
+
     public String getId() {
         return this.id;
     }

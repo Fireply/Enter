@@ -69,7 +69,7 @@ public class DaoImpl implements Dao {
 
     @Override
     public List<?> getAll(Class<?> clazz) {
-        String hql = "from" + clazz.getSimpleName();
+        String hql = "from " + clazz.getSimpleName();
         return executeQuery(hql);
     }
 

@@ -1,19 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.min.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -42,7 +28,7 @@
                 <li><a href="#">Magic leap</a></li>
               </ul>
             </li>
-            <li><a href="#">动态</a></li>
+            <li><a href="news">动态</a></li>
             <li><a href="#">加入我们</a></li>
             <li><a href="intro.jsp">关于我们</a></li>
           </ul>
@@ -64,9 +50,8 @@
     .navbar-brand-padding {
         padding-top: 10px;
     }
+    
+    body {
+        padding-top: 70px;
+    }
     </style>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-
-  </body>
-</html>

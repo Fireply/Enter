@@ -20,7 +20,8 @@
     
         <global-results>
             <result name="login">/signin.jsp</result>
-            <result name="error">error/error.jsp</result>
+            <result name="error">/error/error.jsp</result>
+            <result name="success">/index.jsp</result>
         </global-results>
         
         <action name="" class="loginAction">
@@ -28,12 +29,13 @@
         </action>
         
         <action name="login" class="loginAction">
-            <result name="profile_user">profile/user.jsp</result>
-            <result name="profile_admin">profile/admin.jsp</result>
+            <result name="profile_user">/profile/user.jsp</result>
+            <result name="profile_admin">/profile/admin.jsp</result>
         </action>
         
-        <action name="cookieLogin" class="cookieLoginAction">
-            <result name="success">profile/user.jsp</result>
+        <action name="news" class="newsAction">
+            <result name="news">/pages/news.jsp</result>
+            <result name="news-detail">/pages/news-detail.jsp</result>
         </action>
         
     </package>

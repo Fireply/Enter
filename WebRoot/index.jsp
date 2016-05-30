@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>VR AR MR 企业网站</title>
     <link rel="icon" href="favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/carousel.css" rel="stylesheet">
@@ -89,7 +89,7 @@
         </div>
         <div class="col-md-5">
           <img class="featurette-image img-responsive center-block" src="images/CESA.jpg" alt="Generic placeholder image">
-          <p><a class="btn btn-success btn-lg btn-detail" href="#" role="button">查看详情</a></p>
+          <p><a class="btn btn-success btn-lg enter-btn-detail" href="#" role="button">查看详情</a></p>
         </div>
       </div>
 
@@ -102,7 +102,7 @@
         </div>
         <div class="col-md-5 col-md-pull-7">
           <img class="featurette-image img-responsive center-block" src="images/car.jpg" alt="Generic placeholder image">
-          <p><a class="btn btn-success btn-lg btn-detail" href="#" role="button">查看详情</a></p>
+          <p><a class="btn btn-success btn-lg enter-btn-detail" href="#" role="button">查看详情</a></p>
         </div>
       </div>
 
@@ -115,7 +115,7 @@
         </div>
         <div class="col-md-5">
           <img class="featurette-image img-responsive center-block" src="images/mr_global.jpg" alt="Generic placeholder image">
-          <p><a class="btn btn-success btn-lg btn-detail" href="#" role="button">查看详情</a></p>
+          <p><a class="btn btn-success btn-lg enter-btn-detail" href="#" role="button">查看详情</a></p>
         </div>
       </div>
 
@@ -151,7 +151,7 @@
     </div><!-- /.container -->
 
     <style type="text/css">
-    .btn-detail {
+    .enter-btn-detail {
       width: 60%;
       margin-top: 20%;
       margin-left: 20%

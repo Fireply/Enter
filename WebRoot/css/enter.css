@@ -1,0 +1,19 @@
+body {
+  padding-top: 70px;
+}
+
+.enter-btn-detail {
+  width: 60%;
+  margin-top: 20%;
+  margin-left: 20%
+}
+
+.enter-center-vertical {
+  position: relative;
+  transform: translateY(40%);
+}
+
+.enter-scrollable {
+  max-height: 200px;
+  overflow-y: scroll;
+}

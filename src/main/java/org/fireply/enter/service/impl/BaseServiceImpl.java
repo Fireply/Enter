@@ -1,9 +1,11 @@
 package org.fireply.enter.service.impl;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ import org.hibernate.HibernateException;
 @Transactional(readOnly=true)
 public class BaseServiceImpl implements BaseService {
 
-//    private static final Logger logger = LoggerFactory.getLogger(BaseServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(BaseServiceImpl.class);
     
     @Autowired
     @Qualifier("daoImpl")
@@ -102,6 +104,42 @@ public class BaseServiceImpl implements BaseService {
 //            logger.debug("get entity successful");
         }
         return result;
+    }
+
+    @Override
+    public List<?> getAll(Class<?> clazz) {
+        if (clazz != null) {
+            List<?> result = dao.getAll(clazz);
+            logger.debug("获取所有 {} 实体成功", clazz.getSimpleName());
+            return result;
+        } else {
+            logger.warn("获取所有实体失败，因为试图获取与 null 对应的实体");
+            return null;
+        }
+    }
+
+    @Override
+    public List<?> getAll(String modeName) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<?> get(Class<?> clazz, String fieldName, Object fieldValue) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<?> get(String modelName, String fieldName, Object fieldValue) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<?> get(Class<?> clazz, Map<String, Object> fieldsMap) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

@@ -23,7 +23,7 @@
   
     <div class="container">
 
-      <form class="form-signin center-vertical" action="login" method="post">
+      <form class="form-signin enter-center-vertical" action="login" method="post">
         <h2 class="form-signin-heading">登陆</h2>
         <label for="userId" class="sr-only">用户 ID</label>
         <input type="text" id="userId" name="userId" class="form-control" placeholder="用户 ID" required autofocus />
@@ -40,9 +40,9 @@
     </div> <!-- /container -->
 
     <style type="text/css">
-    .vertical {
+    .enter-center-vertical {
       position: relative;
-      transform: translateX(40%);
+      transform: translateY(40%);
     }
     </style>
 
