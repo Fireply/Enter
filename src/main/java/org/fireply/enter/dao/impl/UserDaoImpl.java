@@ -9,8 +9,13 @@ import org.springframework.stereotype.Repository;
 public class UserDaoImpl extends AbstractDao<String, User> implements UserDao {
 
     @Override
-    public User getUserById(String id) {
-        return getById(id);
+    public User getUserById(String userId) {
+        return getById(userId);
+    }
+
+    @Override
+    public void persistUser(User user) {
+        persist(user);
     }
 
 }

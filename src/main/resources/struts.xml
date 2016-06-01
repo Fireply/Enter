@@ -33,6 +33,13 @@
             <result name="profile_admin">/profile/admin.jsp</result>
         </action>
         
+        <action name="register" class="registerAction">
+            <result name="success" type="stream">
+                <param name="contentType">text/html; charset=UTF-8</param>
+                <param name="inputName">isUnique</param>
+            </result>
+        </action>
+        
         <action name="news" class="newsAction">
             <result name="news">/pages/news.jsp</result>
             <result name="news-detail">/pages/news-detail.jsp</result>
