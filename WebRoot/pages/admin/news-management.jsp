@@ -14,57 +14,45 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <base href="<%=basePath %>" />
     <link rel="icon" href="favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-     <style>
-        .enter-scrollable {
-            max-height: 200px;
-            overflow-y: scroll;
-        }
-        
-        body{
-        	background-image: url(images/news-background.jpg);
-        }
-        
-        .enter-mycss{
-        	color:white;
-        }
-    </style>
-     
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
-    
   </head>
   
   <body>
-  
-    <jsp:include page="/navbar.jsp" />
-  
-    <div class="container">
     
-        <div class="page-header enter-mycss">
-          <h1>新闻动态</h1>
-        </div>
+    <jsp:include page="/pages/admin/admin-navbar.jsp" />
     
-      <s:iterator value="newsList" var="news">
+    <div class="contain-fluid">
+        <div class="row">
+        
+            <jsp:include page="/pages/admin/admin-sidebar.jsp" />
+            
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                 <div class="page-header">
+                    <a class="btn btn-primary" href="pages/admin/news-deployment.jsp" role="button">发布新新闻</a>
+                </div>
+                
+                <s:iterator value="newsList" var="news">
       
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3><a href="news!detail?newsId=${news.id }">${news.title }</a></h3>
-          </div>
-          <div class="panel-body enter-scrollable">
-            <div><s:property value="#news.content" /></div>
-          </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3><a href="news!detail?newsId=${news.id }">${news.title }</a></h3>
+                    </div>
+                    <%-- <div class="panel-body enter-scrollable">
+                      <div><s:property value="#news.content" /></div>
+                    </div> --%>
+                  </div>
+                
+                </s:iterator>
+            </div>
         </div>
-      
-      </s:iterator>
+        
+    </div>
     
-    </div><!-- /.container -->
-    
-   
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
     

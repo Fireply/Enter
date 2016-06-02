@@ -5,6 +5,8 @@
     <constant name="struts.objectFactory" value="spring"/>
     <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
     <constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true" />
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.multipart.saveDir" value="/tmp" />
     <!-- <constant name="struts.devMode" value="true" /> -->
     
     <package name="default" namespace="/" extends="struts-default">
@@ -30,7 +32,7 @@
         
         <action name="login" class="loginAction">
             <result name="profile_user">/profile/user.jsp</result>
-            <result name="profile_admin">/profile/admin.jsp</result>
+            <result name="profile_admin" type="redirectAction">newsManagement</result>
         </action>
         
         <action name="register" class="registerAction">
@@ -43,6 +45,23 @@
         <action name="news" class="newsAction">
             <result name="news">/pages/news.jsp</result>
             <result name="news-detail">/pages/news-detail.jsp</result>
+        </action>
+        
+        <action name="newsManagement" class="newsManagementAction">
+            <result name="news">/pages/admin/news-management.jsp</result>
+        </action>
+        
+        <action name="newsDeployment" class="newsDeploymentAction">
+            <!-- <result name="success">/pages/admin/news-management.jsp</result> -->
+            <result name="success" type="redirectAction">newsManagement</result>
+            <result name="input" type="stream">
+                <param name="contentType">text/html; charset=UTF-8</param>
+                <param name="inputName">filePath</param>
+            </result>
+            <result name="ajax" type="stream">
+                <param name="contentType">text/html; charset=UTF-8</param>
+                <param name="inputName">filePath</param>
+            </result>
         </action>
         
     </package>

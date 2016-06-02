@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.annotation.Transactional;
 
 public class NewsServiceTest extends BaseSpringJunit4Test {
 
@@ -24,21 +25,25 @@ public class NewsServiceTest extends BaseSpringJunit4Test {
     
     @Test
     public void newsServiceTest() {
-        String id = "en:mr-device-world";
-        String title = "MR（混合现实）智能头戴显示设备全球巡展启动";
-        String content = "今天上午，北京微视&国人恒宇科技在珠海德瀚国际会议中心酒店的海天一色厅举办的一场《中国首家MR(混合现实)智能头戴显示设备全球巡展启动仪式》，给众多的投资界和广大的消费行业以及各个领域的专家带来了一场别开生面的汇报及发布会，这家专门从事VR(虚拟现实)、AR(增强现实)、MR(混合现实)(以下简称3R) 等专业的人机数字交互领域的科技公司，从航天、教育、军事、体育、工业、旅游、娱乐等六大领域向我们展示了这些高科技技术对于未来的无限可能。微视图像董事长欧阳骏致开幕辞，他毕业于北京大学，在中科院自动化所做研发工作，1994年创建微视图像公司，即微视新纪元公司的前身，有20多年的技术积累，现任中国图像图形学会理事。微视图像副总经理欧阳哲作了题为“回顾历史，见证辉煌”的演讲，他是985重点大学 成都电子科技大学学霸 双学士，在视觉行业积累十年。周岩，国人恒宇CEO ，毕业于日本东京数字好莱坞大学，博士，留日8年，曾任索尼公司木原研究室从事lRC研发工作，他演讲的课题是Project Chaos卡厄斯计划。吴柳燃，中国十大策划人，整合营销传播专家，品牌战略管理专家，资深广告人，于1988年起正式踏入营销领域，数十年来经其手的营销项目尚无败笔。崇尚“四两拨千斤“的运营管理思路，已帮助多家中小企业发展、上市，取得了前所未有的佳绩。珠海这个环境美丽的城市是他们的出发站是他们此次巡展的启动仪式所在地，下一站他们将在美国的硅谷率先发布这款MR(混合现实)智能眼镜的演示内容、在此之后他们会在北京、新西兰、德国、日本先后举办盛大的巡演party与其他 3R 友商相比他们的团队实力还是相当强大的，首席科学家Mark Billinghurst教授，曾是新西兰Hitlab研究室的研究室主任，师从AR、VR领域的发起人也是MagicLeap技术的原始创立者Tom Furness教授。 发布会上他们除了开启这个启动仪式外，还展现了他们之前在国内建立的一些线下体验馆以及他们为很多行业提供的技术服务与支持的展示，并且在发布会现场有意向投资的人和机构、公司所表达的投资额总额达3亿多美金(20亿人民币)远远超过计划融资3亿人民币的额度，会后在和意向投资人进行筛选沟通。可能这也是迄今为止这个行业的最大融资比例。本稿件所含文字、图片和音视频资料，版权均属齐鲁晚报所有，任何媒体、网站或个人未经授权不得转载，违者将依法追究责任。";
-        String enTitle = "MR (Mixed Reality) device world";
-        String enContent = "This morning, the Beijing Microview & people Hengyu Technology at Zhuhai International Conference Center Hotel de Han sky and sea organized by the Office of a 'China's first MR (Mixed Reality) wearing a smart display device launch world tour', to many the investment community and the majority of experts in various fields of consumer industries and bring a report on the conference and a spectacular, this specialized in VR (virtual reality), AR (Augmented reality), MR (mixed reality) (hereinafter referred to as 3R) professionals such as human-computer interaction in the field of digital technology companies from the aerospace, education, military, sports, industry, tourism, entertainment and other six areas to show us these high technology for a future of unlimited possibilities. Ouyang Chun, chairman of the micro-view image opening remarks, he graduated from Beijing University, Chinese Academy of Sciences R & D work done by automation, created in 1994, as the micro-image company, Microview the predecessor company, has accumulated 20 years of technology, the current Chinese image and graphics Society. As micro-chul, deputy general manager Ouyang image made a presentation entitled 'Looking back at history, to witness the brilliant' speech, he was 985 key universities of Chengdu University of Electronic Science and Technology Studies Pa double degree in visual industry has accumulated decades. Zhou Yan, people Hengyu CEO, Japan and graduated from Tokyo Digital Hollywood University, Ph.D., in Japan for eight years, served as Sony Kihara Research Center in lRC research and development work is the subject of his speech Project Chaos Ka Esi plan. Wu Liu burning, China's top ten planning, integrated marketing communications experts, strategic brand management experts, senior advertising, in 1988 formally entered the field of marketing, decades after their hands marketing program no flaw. Advocating 'skillfully deflected the question,' the operation and management ideas, has helped a number of SMEs, market, achieved unprecedented success. Beautiful city Zhuhai this environment is their starting station of the tour is to launch their location, their next stop will be the first release of this MR (Mixed Reality) smart glasses presentations Silicon Valley in the United States, after which they will in Beijing, New Zealand, Germany, Japan has held a grand tour party compared to other vendors' 3R their team strength is still quite strong, chief scientist Professor Mark Billinghurst, who is research director of New Zealand Hitlab lab, under the tutelage of AR promoters VR field is the original founder MagicLeap art professor Tom Furness. In addition to the conference, they open this launch, but also show some lines in the country before they established their museum experience and to provide technical service and support in many sectors of the show, and at the conference site and are interested in investing institutions, the total amount of investment company expressed over more than 300 million dollars (2 billion yuan) plans to raise far more than the amount of 300 million yuan, and after the screening of people interested in investing in communication. Perhaps this is by far the largest proportion of financing the industry. The manuscript contains text, images, video and audio material, the Qilu Evening News copyright are all, any media, websites or individuals shall not be reproduced without authorization, and offenders will be prosecuted according to law.";
+        String id = "amd-radeon-rx480";
+        String title = "Radeon RX480 门槛降到 US$199";
+        String content = "就当下来说，VR 的入门门槛是非常高的 -- 除了 VR 设备本身的花费之外，还需要一张 US$300 以上等级的显卡和相搭配的电脑主机才行。NVIDIA 新发布的 GTX1080 和 GTX1070 系列显卡虽然跑起 VR 来是轻松愉快，但它们定价分别在 US$600 和 US$380 的价格带，对于降低入门门槛并没有什么帮助。AMD 正是看准了这个机会，先一步推出足够推动 VR 的中价位显卡 RX480，抢占 PC VR 市场的先机。RX480 以 AMD 全新的 Polaris 架构为基础，并将推出 4GB 和 8GB RAM 的版本。除了支持 AMD 的 Freesync 和 HDR 游戏之外，它也支持 DisplayPort 1.3 / 1.4 输出。现场示范 Ashes of Sigularity 游戏时，GTX1080 跑出了 58.7fps，而 SLI 的 RX480 则是达到了 62.5 fps -- 但两张的 RX480 依然比单张的 GTX1080 还要便宜一些呢。不过，无论是定价还是单卡性能，感觉能和 RX480 对应的 NVIDIA 产品应该是还没消息的 GTX1060 才对。到时候 NVIDIA 应该会把场子找回来才是吧？";
+        String enId = "xbox-re-2017";
+        String enTitle = "Xbox VR coming in 2017";
+        String enContent = "Boy, it's been a busy week in the world of wearable tech. We kicked things off with Fitbit's heart rate data accuracy coming under scrutiny once again. Then more images of the Samsung Gear Fit2 surfaced and then there was Pebble with not one, but three new wearables. Oh, and Jawbone might be killing its UP tracker as well.While those stories were the ones to grab the headlines, we've picked out the other wearable news blips and murmurs of the past seven days that you might have missed.This could be our most concrete evidence yet of Microsoft's virtual reality ambitions. A developer has confirmed to Arstechnica that it is working on a VR title that'll launch in 2017.The Xbox VR game is set to be shown off at this year's E3 gaming expo, which is only a couple of weeks away and adds to the speculation that Microsoft is working on a new console that's set to be more VR friendly.Sony's PlayStation VR headset is launching later this year in October, so it looks like an Xbox rival could be joining the party in the not too distant future.";
         Date createTime = new Date();
         
-        News news = new News(id, enTitle, enContent, createTime);
+        News news = new News(id, title, content, createTime);
         
-        newsService.persist(news);
+        newsService.persistNews(news);
         
         List<News> newsList = newsService.getAllNews();
+//        logger.debug(newsList.toString());
         
-        logger.debug(newsList.toString());
+        News xboxNews = newsService.getNewsById(enId);
+//        logger.debug(xboxNews.toString());
         
         assertNotNull(newsList);
+        assertNotNull(xboxNews);
     }
 }

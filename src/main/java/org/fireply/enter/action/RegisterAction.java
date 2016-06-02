@@ -32,9 +32,9 @@ public class RegisterAction extends ActionSupport {
         
         result = registerService.register(user);
         if (SUCCESS.equals(result)) {
-            isUnique = new ByteArrayInputStream("yes".getBytes("UTF-8"));
+            isUnique = new ByteArrayInputStream("可以使用√".getBytes("UTF-8"));
         } else {
-            isUnique = new ByteArrayInputStream("no".getBytes("UTF-8"));
+            isUnique = new ByteArrayInputStream("已被注册".getBytes("UTF-8"));
         }
         
         return SUCCESS;

@@ -1,16 +1,14 @@
-package org.fireply.enter.service;
+package org.fireply.enter.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.fireply.enter.model.News;
 
-public interface NewsService {
+public interface NewsDao {
 
     void persistNews(News news);
     
     News getNewsById(String id);
     
     List<News> getAllNews();
-    
 }

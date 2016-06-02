@@ -45,7 +45,7 @@ public class NewsAction extends ActionSupport implements RequestAware, SessionAw
     }
     
     public String detail() throws Exception {
-        news = newsService.getNews(newsId);
+        news = newsService.getNewsById(newsId);
         if (news == null) {
             logger.warn("从数据库查询 id={} 的新闻失败", newsId);
             return ERROR;

@@ -21,7 +21,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">产品 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="dropdown-header">VR</li>
-                <li><a href="#">Oculus Rift</a></li>
+                <li><a href="pages/product.jsp">Oculus Rift</a></li>
                 <li class="dropdown-header">AR</li>
                 <li><a href="#">Microsoft HoloLens</a></li>
                 <li class="dropdown-header">MR</li>
@@ -34,7 +34,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="login">登录</a></li>
-            <li><a href="#">注册</a></li>
+            <li><a href="signup.jsp">注册</a></li>
           </ul>
           <form class="navbar-form navbar-right" role="search">
             <div class="form-group">

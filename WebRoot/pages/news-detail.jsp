@@ -14,7 +14,23 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <base href="<%=basePath %>" />
     <link rel="icon" href="favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    
+
+    <style type="text/css">
+      .one {
+        color: #150c0c;
+      }
+      
+      .l1 {
+        background-color: #b9f9eb;
+        padding-top: 5px;
+        padding-left: 230px;
+      }
+      
+      p {
+        text-indent: 2em;
+      }
+    </style>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
@@ -28,9 +44,17 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     
     <div class="container">
     
-    新闻 id: ${newsId }<br><br>
-    新闻标题 EL: ${news.title }<br><br>
-    新闻内容 EL: ${news.content }<br><br>
+ 	   <div class="l1">
+    
+    	   <div class="one"><h1> ${news.title }</h1><br></div>
+    
+    	</div>
+      
+        <div class="two"> 
+        
+    	   <br/><p>${news.content }<p></div><br><br>
+      
+        </div>
     
     </div><!-- /.container -->
     
