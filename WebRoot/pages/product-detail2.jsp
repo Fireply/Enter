@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="/struts-tags" prefix="s" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -10,26 +9,20 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>新闻动态</title>
+    <title>Insert title here</title>
     <base href="<%=basePath %>" />
     <link rel="icon" href="favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+h1 {
+	margin-left: 32%;
+	margin-top: 5%;
+}
 
-    <style type="text/css">
-      .one {
-        color: #150c0c;
-      }
-      
-      .l1 {
-        background-color: #b9f9eb;
-        padding-top: 5px;
-        padding-left: 40%;
-      }
-      
-      p {
-        text-indent: 2em;
-      }
-    </style>
+.img {
+	width: 100%;
+} 
+</style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -39,26 +32,24 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
   </head>
   
   <body>
-    
-    <jsp:include page="/navbar.jsp" />
-    
-    <div class="container">
-    
- 	   <div class="l1">
-    
-    	   <div class="one"><h1> ${news.title }</h1><br></div>
-    
-    	</div>
-      
-        <div class="two"> 
-        
-    	   <br/><p>${news.content }<p></div><br><br>
-      
-        </div>
-    
-    </div><!-- /.container -->
-    
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  
+   <jsp:include page="/navbar.jsp" />
+
+	<div class="container">
+
+		<h1>vr虚拟现实3d眼镜头戴式头盔影院千幻</h1>
+		<div>
+			<div>
+				<img class="img" alt="图片加载失败" src="images/1-1.jpg"> <img
+					class="img" alt="图片加载失败" src="images/carousel1.jpg">
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
     
     <script src="js/jquery.min.js"></script>
